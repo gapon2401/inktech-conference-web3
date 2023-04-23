@@ -28,8 +28,6 @@ contract RentRoom is Ownable {
         }
     }
 
-
-
     /**
      * @notice Gets room code only for the payer
      */
@@ -37,6 +35,20 @@ contract RentRoom is Ownable {
         require(msg.sender == roomOwner, 'NOT_ROOM_OWNER');
 
         return generateRandomCode();
+    }
+
+    /**
+     * @notice Generates random OTP
+     */
+    function generateRandomCode() private view returns (uint256) {
+        return uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 1000000;
+    }
+
+    /**
+     * @notice Checks if room is occupied
+     */
+    function isRoomOccupied() private view returns (bool) {
+        return roomExpires != 0 && roomExpires > block.timestamp;
     }
 
     /**
@@ -51,19 +63,4 @@ contract RentRoom is Ownable {
      * @notice Contract might receive/hold ETH as part of the maintenance process.
      */
     receive() external payable {}
-
-    /**
-     * @notice Generates random OTP
-     */
-    function generateRandomCode() private view returns (uint256) {
-        return uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 1000000;
-    }
-
-    /**
-     * @notice Checks if room is occupied
-     */
-    function isRoomOccupied() private view returns (bool) {
-        return roomExpires != 0 && roomExpires >  block.timestamp;
-    }
-
 }

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\dev\\node\\inktech-conference\\contracts\\RentRoom.sol": {
-      "lastModificationDate": 1682276912343,
-      "contentHash": "d10f6d9108c6f7be88225b1d58d7223e",
+      "lastModificationDate": 1682282923350,
+      "contentHash": "8cd6b06c1f6c8b69db03c8c509f8f428",
       "sourceName": "contracts/RentRoom.sol",
       "solcConfig": {
         "version": "0.8.18",
